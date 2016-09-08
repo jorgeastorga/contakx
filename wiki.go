@@ -3,8 +3,8 @@ package main
 import (
   "io/ioutil"
   "net/http"
-  //"os"
-  //"log"
+  "os"
+  "log"
   "html/template"
 )
 
@@ -74,12 +74,12 @@ func main() {
   //http.HandleFunc("/save/", saveHandler)
 
   //Server startup
-  /*port := os.Getenv("PORT")
+  port := os.Getenv("PORT")
 
   if port == "" {
     log.Fatal("$PORT must be set")
   }
-  http.ListenAndServe(":" + port, nil)*/
+  http.ListenAndServe(":" + port, nil)
 
-  http.ListenAndServe(":8080", nil)
+  //http.ListenAndServe(":8080", nil)
 }
