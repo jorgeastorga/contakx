@@ -5,7 +5,7 @@ import (
   "io/ioutil"
   "net/http"
   "os"
-  //"log"
+  "log"
 )
 
 
@@ -48,9 +48,9 @@ func main() {
 
   if port == "" {
     log.Fatal("$PORT must be set")
-    }
+  }
 
-    http.HandleFunc("/view/", viewHandler)
-    http.ListenAndServe(":" + port, nil)
-    //http.ListenAndServe(":8080", nil)
+  http.HandleFunc("/view/", viewHandler)
+  http.ListenAndServe(":" + port, nil)
+  //http.ListenAndServe(":8080", nil)
 }
