@@ -3,8 +3,8 @@ package main
 import (
   "io/ioutil"
   "net/http"
-  "os"
-  "log"
+  //"os"
+  //"log"
   "html/template"
 )
 
@@ -29,8 +29,8 @@ func loadPage(title string) (*Page, error) {
 }
 
 func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
-  t, _ := template.ParseFiles(tmpl + ".html")
-  t.Execute(w,p)
+  t,_ := template.ParseFiles("layout.html", tmpl + ".html")
+  t.ExecuteTemplate(w, "layout", p)
 }
 
 /*
@@ -79,12 +79,12 @@ func main() {
   //http.HandleFunc("/save/", saveHandler)
 
   //Server startup
-  port := os.Getenv("PORT")
+  /*port := os.Getenv("PORT")
 
   if port == "" {
     log.Fatal("$PORT must be set")
   }
-  http.ListenAndServe(":" + port, nil)
+  http.ListenAndServe(":" + port, nil)*/
 
-  //http.ListenAndServe(":8080", nil)
+  http.ListenAndServe(":8080", nil)
 }
