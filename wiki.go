@@ -33,25 +33,25 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
   t.ExecuteTemplate(w, "layout", p)
 }
 
-/*
+
+
+/********************************************************
 * View Handler
 */
 func viewHandler(w http.ResponseWriter, r *http.Request){
-
-
   /*TODO:Stop loading a text file since we're changin this logic
   title := r.URL.Path[len("/view/"):]
   p, err:= loadPage(title)
 
   if err != nil {
-    http.Redirect(w, r, "/edit/"+title, http.StatusFound)
-    return
+  http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+  return
   }*/
 
   renderTemplate(w, "view", nil)
 }
 
-/*
+/********************************************************
 * Edit Handler
 */
 func editHandler(w http.ResponseWriter, r *http.Request){
@@ -63,7 +63,7 @@ func editHandler(w http.ResponseWriter, r *http.Request){
   renderTemplate(w, "edit", p)
 }
 
-/*
+/********************************************************
 *  Save Handler
 */
 func saveHandler(w http.ResponseWriter, r *http.Request){
@@ -74,16 +74,19 @@ func handler(w http.ResponseWriter, r *http.Request){
   //fmt.Fprintf(w, "Hi there, %s!", r.URL.Path[1:])
 }
 
-/**
+/********************************************************
 * Main function to initiate the application
 */
 func main() {
 
   //Route Registration
-  http.HandleFunc("/", viewHandler)
+  http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
+    RenterTemplate(w, r, "index/home", nil)
+  })
   http.HandleFunc("/view/", viewHandler)
   http.HandleFunc("/edit/", editHandler)
   //http.HandleFunc("/save/", saveHandler)
+
 
   //Setup the file server to serve assets
   http.Handle("/assets/",
@@ -98,13 +101,8 @@ func main() {
     //log.Fatal("$PORT must be set")
     log.Println("Port not set, using 8080")
     http.ListenAndServe(":8080", nil)
-  } else {
-    //Used for Heroku
-    http.ListenAndServe(":" + port, nil)
+    } else {
+      //Used for Heroku
+      http.ListenAndServe(":" + port, nil)
+    }
   }
-
-
-
-
-
-}
