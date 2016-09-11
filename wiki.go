@@ -37,15 +37,18 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
 * View Handler
 */
 func viewHandler(w http.ResponseWriter, r *http.Request){
+
+
+  /*TODO:Stop loading a text file since we're changin this logic
   title := r.URL.Path[len("/view/"):]
   p, err:= loadPage(title)
 
   if err != nil {
     http.Redirect(w, r, "/edit/"+title, http.StatusFound)
     return
-  }
+  }*/
 
-  renderTemplate(w, "view", p)
+  renderTemplate(w, "view", nil)
 }
 
 /*
@@ -77,6 +80,7 @@ func handler(w http.ResponseWriter, r *http.Request){
 func main() {
 
   //Route Registration
+  http.HandleFunc("/", viewHandler)
   http.HandleFunc("/view/", viewHandler)
   http.HandleFunc("/edit/", editHandler)
   //http.HandleFunc("/save/", saveHandler)
