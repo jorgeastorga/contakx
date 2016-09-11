@@ -82,15 +82,15 @@ func main() {
   //http.HandleFunc("/save/", saveHandler)
 
   //Server startup
-  /*port := os.Getenv("PORT")
+  port := os.Getenv("PORT")
 
   if port == "" {
     log.Fatal("$PORT must be set")
   }
-  http.ListenAndServe(":" + port, nil)*/
-
+  
   http.Handle("/assets/",
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-  http.ListenAndServe(":8080", nil)
+  //http.ListenAndServe(":8080", nil)
+  http.ListenAndServe(":" + port, nil)
 }
