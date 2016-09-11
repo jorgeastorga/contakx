@@ -3,8 +3,8 @@ package main
 import (
   "io/ioutil"
   "net/http"
-  //"os"
-  //"log"
+  "os"
+  "log"
   "html/template"
 )
 
@@ -87,7 +87,7 @@ func main() {
   if port == "" {
     log.Fatal("$PORT must be set")
   }
-  
+
   http.Handle("/assets/",
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
