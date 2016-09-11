@@ -34,8 +34,8 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
 }
 
 /*
- * View Handler
- */
+* View Handler
+*/
 func viewHandler(w http.ResponseWriter, r *http.Request){
   title := r.URL.Path[len("/view/"):]
   p, err:= loadPage(title)
@@ -49,8 +49,8 @@ func viewHandler(w http.ResponseWriter, r *http.Request){
 }
 
 /*
- * Edit Handler
- */
+* Edit Handler
+*/
 func editHandler(w http.ResponseWriter, r *http.Request){
   title := r.URL.Path[len("/edit/"):]
   p, err := loadPage(title)
@@ -61,8 +61,8 @@ func editHandler(w http.ResponseWriter, r *http.Request){
 }
 
 /*
- *  Save Handler
- */
+*  Save Handler
+*/
 func saveHandler(w http.ResponseWriter, r *http.Request){
 
 }
@@ -81,16 +81,26 @@ func main() {
   http.HandleFunc("/edit/", editHandler)
   //http.HandleFunc("/save/", saveHandler)
 
-  //Server startup
-  port := os.Getenv("PORT")
-
-  if port == "" {
-    log.Fatal("$PORT must be set")
-  }
-
+  //Setup the file server to serve assets
   http.Handle("/assets/",
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-  //http.ListenAndServe(":8080", nil)
-  http.ListenAndServe(":" + port, nil)
+  //Server startup
+  port := os.Getenv("PORT")
+
+
+  if port == "" {
+    //Fix this when deploying a good release of the production application
+    //log.Fatal("$PORT must be set")
+    log.Println("Port not set, using 8080")
+    http.ListenAndServe(":8080", nil)
+  } else {
+    //Used for Heroku
+    http.ListenAndServe(":" + port, nil)
+  }
+
+
+
+
+
 }
