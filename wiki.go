@@ -71,6 +71,9 @@ func handler(w http.ResponseWriter, r *http.Request){
   //fmt.Fprintf(w, "Hi there, %s!", r.URL.Path[1:])
 }
 
+/**
+* Main function to initiate the application
+*/
 func main() {
 
   //Route Registration
@@ -85,6 +88,9 @@ func main() {
     log.Fatal("$PORT must be set")
   }
   http.ListenAndServe(":" + port, nil)*/
+
+  http.Handle("/assets/",
+    http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
   http.ListenAndServe(":8080", nil)
 }
