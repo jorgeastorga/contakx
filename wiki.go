@@ -33,22 +33,18 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
   t.ExecuteTemplate(w, "layout", p)
 }
 
-
-
 /********************************************************
 * View Handler
 */
 func viewHandler(w http.ResponseWriter, r *http.Request){
-  /*TODO:Stop loading a text file since we're changin this logic
-  title := r.URL.Path[len("/view/"):]
-  p, err:= loadPage(title)
+  log.Println("viewHandler was called")
+}
 
-  if err != nil {
-  http.Redirect(w, r, "/edit/"+title, http.StatusFound)
-  return
-  }*/
-
-  renderTemplate(w, "view", nil)
+/********************************************************
+* View Handler
+*/
+func aboutHandler(w http.ResponseWriter, r *http.Request){
+  RenderTemplate(w, r, "index/about", nil)
 }
 
 /********************************************************
@@ -70,6 +66,13 @@ func saveHandler(w http.ResponseWriter, r *http.Request){
 
 }
 
+/********************************************************
+*  Contact Handler
+*/
+func contactHandler(w http.ResponseWriter, r *http.Request){
+  RenderTemplate(w, r, "index/contact", nil)
+}
+
 func handler(w http.ResponseWriter, r *http.Request){
   //fmt.Fprintf(w, "Hi there, %s!", r.URL.Path[1:])
 }
@@ -81,10 +84,13 @@ func main() {
 
   //Route Registration
   http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
-    RenterTemplate(w, r, "index/home", nil)
+    RenderTemplate(w, r, "index/home", nil)
   })
+
   http.HandleFunc("/view/", viewHandler)
   http.HandleFunc("/edit/", editHandler)
+  http.HandleFunc("/about", aboutHandler)
+  http.HandleFunc("/contact", contactHandler)
   //http.HandleFunc("/save/", saveHandler)
 
 
