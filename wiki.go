@@ -73,8 +73,11 @@ func contactHandler(w http.ResponseWriter, r *http.Request){
   RenderTemplate(w, r, "index/contact", nil)
 }
 
-func handler(w http.ResponseWriter, r *http.Request){
-  //fmt.Fprintf(w, "Hi there, %s!", r.URL.Path[1:])
+/********************************************************
+*  Index Handler
+*/
+func indexHandler(w http.ResponseWriter, r *http.Request){
+  RenderTemplate(w, r, "index/home", nil)
 }
 
 /********************************************************
@@ -83,15 +86,11 @@ func handler(w http.ResponseWriter, r *http.Request){
 func main() {
 
   //Route Registration
-  http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
-    RenderTemplate(w, r, "index/home", nil)
-  })
-
+  http.HandleFunc("/", indexHandler )
   http.HandleFunc("/view/", viewHandler)
   http.HandleFunc("/edit/", editHandler)
   http.HandleFunc("/about", aboutHandler)
   http.HandleFunc("/contact", contactHandler)
-  //http.HandleFunc("/save/", saveHandler)
 
 
   //Setup the file server to serve assets
