@@ -54,8 +54,5 @@ func RenderTemplate(w http.ResponseWriter, r *http.Request, name string,
       http.StatusInternalServerError,
     )
   }
-
-
-
   log.Println("Render template called successfully")
 }

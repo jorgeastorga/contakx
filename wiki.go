@@ -81,6 +81,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request){
 }
 
 /********************************************************
+*  Registration Handler
+*/
+func registrationHandler(w http.ResponseWriter, r *http.Request){
+  RenderTemplate(w, r, "users/new", nil)
+}
+
+/********************************************************
 * Main function to initiate the application
 */
 func main() {
@@ -91,6 +98,7 @@ func main() {
   http.HandleFunc("/edit/", editHandler)
   http.HandleFunc("/about", aboutHandler)
   http.HandleFunc("/contact", contactHandler)
+  http.HandleFunc("/register", registrationHandler)
 
 
   //Setup the file server to serve assets
