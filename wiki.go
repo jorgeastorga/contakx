@@ -6,6 +6,7 @@ import (
   "os"
   "log"
   "html/template"
+  "github.com/gorilla/mux"
 )
 
 type Page struct {
@@ -88,21 +89,36 @@ func registrationHandler(w http.ResponseWriter, r *http.Request){
 }
 
 /********************************************************
+*  Gorilla Mux Page Handler
+*/
+func pageHandler(w http.ResponseWriter, r *http.Request){
+  log.Println("pages handler worked")
+  vars := mux.Vars(r)
+  pageID := vars["id"]
+
+  log.Println(pageID)
+}
+
+/********************************************************
 * Main function to initiate the application
 */
 func main() {
 
   //Route Registration
-  http.HandleFunc("/", indexHandler )
-  http.HandleFunc("/view/", viewHandler)
-  http.HandleFunc("/edit/", editHandler)
-  http.HandleFunc("/about", aboutHandler)
-  http.HandleFunc("/contact", contactHandler)
-  http.HandleFunc("/register", registrationHandler)
+  rtr := mux.NewRouter()
 
+  rtr.HandleFunc("/pages/{id:[0-9]+}",
+    pageHandler)
+  rtr.HandleFunc("/", indexHandler)
+  rtr.HandleFunc("/view", viewHandler)
+  rtr.HandleFunc("/edit", editHandler)
+  rtr.HandleFunc("/about", aboutHandler)
+  rtr.HandleFunc("/contact", contactHandler)
+  rtr.HandleFunc("/register", registrationHandler)
 
-  //Setup the file server to serve assets
-  http.Handle("/assets/",
+  http.Handle("/", rtr)
+
+  rtr.PathPrefix("/assets").Handler(
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
   //Server startup
@@ -113,9 +129,9 @@ func main() {
     //Fix this when deploying a good release of the production application
     //log.Fatal("$PORT must be set")
     log.Println("Port not set, using 8080")
-    http.ListenAndServe(":8080", nil)
+    http.ListenAndServe(":8080", rtr)
     } else {
       //Used for Heroku
-      http.ListenAndServe(":" + port, nil)
+      http.ListenAndServe(":" + port, rtr)
     }
   }
