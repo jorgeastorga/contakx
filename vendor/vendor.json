@@ -1,6 +1,8 @@
 {
   "comment": "",
   "ignore":"test",
-  "package":[{}],
+  "package":[{
+    "gorilla-mux": "github.com/gorilla/mux"
+    }],
   "rootPath": "github.com/jorgeastorga/go-webapp"
 }
