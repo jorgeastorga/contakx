@@ -6,12 +6,27 @@ import (
   "os"
   "log"
   "html/template"
+  "database/sql"
+  _ "github.com/go-sql-driver/mysql"
+  "fmt"
 )
 
 type Page struct {
   Title string
   Body []byte
+  Content string
+  Date string
 }
+
+const (
+  DBHost  = "127.0.0.1"
+  DBPort  = ":3306"
+  DBUser  = "root"
+  DBPass  = "testing123"
+  DBDbase = "contakx"
+)
+
+var database *sql.DB
 
 func (p *Page) save() error {
   filename := p.Title + ".txt"
@@ -91,6 +106,18 @@ func registrationHandler(w http.ResponseWriter, r *http.Request){
 * Main function to initiate the application
 */
 func main() {
+
+  //Database connection
+  dbConn := fmt.Sprintf("%s:%s@tcp(%s)/%s", DBUser, DBPass, DBHost, DBDbase)
+  db, err := sql.Open("mysql", dbConn)
+  if err != nil {
+    log.Println("Couldn't connect!")
+    log.Println(err.Error)
+  } else {
+    log.Println("Connected to the database succesfully")
+  }
+  database = db
+
 
   //Route Registration
   http.HandleFunc("/", indexHandler )
