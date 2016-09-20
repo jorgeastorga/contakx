@@ -1,1 +1,1 @@
-web: go-webapp
+web: gowebapp
