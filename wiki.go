@@ -9,6 +9,7 @@ import (
   "database/sql"
   _ "github.com/go-sql-driver/mysql"
   "fmt"
+  "github.com/gorilla/mux"
 )
 
 type Page struct {
@@ -20,7 +21,7 @@ type Page struct {
 
 const (
   DBHost  = "127.0.0.1"
-  DBPort  = ":3306"
+  DBPort  = "3306"
   DBUser  = "root"
   DBPass  = "testing123"
   DBDbase = "contakx"
@@ -103,12 +104,41 @@ func registrationHandler(w http.ResponseWriter, r *http.Request){
 }
 
 /********************************************************
+*  Gorilla Mux Page Handler
+*/
+func pageHandler(w http.ResponseWriter, r *http.Request){
+  log.Println("pages handler worked")
+  vars := mux.Vars(r)
+  pageID := vars["id"]
+
+  log.Println(pageID)
+}
+
+
+func servePage(w http.ResponseWriter, r *http.Request) {
+  vars := mux.Vars(r)
+  pageID := vars["id"]
+  thisPage := Page{}
+  fmt.Println(pageID)
+  err := database.QueryRow("SELECT page_title,page_content,page_date FROM pages WHERE id=?", pageID).Scan(&thisPage.Title, &thisPage.Content, &thisPage.Date)
+  if err != nil {
+
+    log.Println("Couldn't get page: +pageID")
+    log.Println(err.Error)
+    log.Fatal(err)
+  }
+  html := `<html><head><title>` + thisPage.Title + `</title></head><body><h1>` + thisPage.Title + `</h1><div>` + thisPage.Content + `</div></body></html>`
+  fmt.Fprintln(w, html)
+}
+
+/********************************************************
 * Main function to initiate the application
 */
 func main() {
 
   //Database connection
-  dbConn := fmt.Sprintf("%s:%s@tcp(%s)/%s", DBUser, DBPass, DBHost, DBDbase)
+  dbConn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DBUser, DBPass, DBHost, DBPort, DBDbase)
+  //dbConn := "root:testing123@tcp(localhost:3306)/contakx"
   db, err := sql.Open("mysql", dbConn)
   if err != nil {
     log.Println("Couldn't connect!")
@@ -120,16 +150,22 @@ func main() {
 
 
   //Route Registration
-  http.HandleFunc("/", indexHandler )
-  http.HandleFunc("/view/", viewHandler)
-  http.HandleFunc("/edit/", editHandler)
-  http.HandleFunc("/about", aboutHandler)
-  http.HandleFunc("/contact", contactHandler)
-  http.HandleFunc("/register", registrationHandler)
+  rtr := mux.NewRouter()
 
+  /*rtr.HandleFunc("/pages/{id:[0-9]+}",
+    pageHandler)*/
+    rtr.HandleFunc("/pages/{id:[0-9]+}",
+      servePage)
+  rtr.HandleFunc("/", indexHandler)
+  rtr.HandleFunc("/view", viewHandler)
+  rtr.HandleFunc("/edit", editHandler)
+  rtr.HandleFunc("/about", aboutHandler)
+  rtr.HandleFunc("/contact", contactHandler)
+  rtr.HandleFunc("/register", registrationHandler)
 
-  //Setup the file server to serve assets
-  http.Handle("/assets/",
+  http.Handle("/", rtr)
+
+  rtr.PathPrefix("/assets").Handler(
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
   //Server startup
@@ -140,9 +176,9 @@ func main() {
     //Fix this when deploying a good release of the production application
     //log.Fatal("$PORT must be set")
     log.Println("Port not set, using 8080")
-    http.ListenAndServe(":8080", nil)
+    http.ListenAndServe(":8080", rtr)
     } else {
       //Used for Heroku
-      http.ListenAndServe(":" + port, nil)
+      http.ListenAndServe(":" + port, rtr)
     }
   }
