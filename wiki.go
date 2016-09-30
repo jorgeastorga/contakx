@@ -1,46 +1,14 @@
 package main
 
 import (
-  "io/ioutil"
   "net/http"
   "os"
   "log"
-  "html/template"
   _"database/sql"
   _ "github.com/go-sql-driver/mysql"
-  "fmt"
   "github.com/gorilla/mux"
   _"github.com/jinzhu/gorm"
 )
-
-type Page struct {
-  Title string
-  Body []byte
-  Content string
-  Date string
-}
-
-
-
-func (p *Page) save() error {
-  filename := p.Title + ".txt"
-  return ioutil.WriteFile(filename, p.Body, 0600)
-}
-
-func loadPage(title string) (*Page, error) {
-  filename := title + ".txt"
-  body,err := ioutil.ReadFile(filename)
-  if err != nil {
-    return nil, err
-  }
-
-  return &Page{Title: title, Body: body}, nil
-}
-
-func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
-  t,_ := template.ParseFiles("layout.html", tmpl + ".html")
-  t.ExecuteTemplate(w, "layout", p)
-}
 
 /********************************************************
 * View Handler
@@ -60,12 +28,13 @@ func aboutHandler(w http.ResponseWriter, r *http.Request){
 * Edit Handler
 */
 func editHandler(w http.ResponseWriter, r *http.Request){
-  title := r.URL.Path[len("/edit/"):]
+  //Saving for sample code
+  /*title := r.URL.Path[len("/edit/"):]
   p, err := loadPage(title)
   if err != nil {
     p = &Page{Title: title}
   }
-  renderTemplate(w, "edit", p)
+  renderTemplate(w, "edit", p)*/
 }
 
 /********************************************************
@@ -107,25 +76,6 @@ func pageHandler(w http.ResponseWriter, r *http.Request){
   log.Println(pageID)
 }
 
-
-func servePage(w http.ResponseWriter, r *http.Request) {
-  vars := mux.Vars(r)
-  pageID := vars["id"]
-  //thisPage := Page{}
-  fmt.Println(pageID)
-  /*err := database.QueryRow("SELECT page_title,page_content,page_date FROM pages WHERE id=?", pageID).Scan(&thisPage.Title, &thisPage.Content, &thisPage.Date)
-  if err != nil {
-
-    log.Println("Couldn't get page: +pageID")
-    log.Println(err.Error)
-    log.Fatal(err)
-  }
-  html := `<html><head><title>` + thisPage.Title + `</title></head><body><h1>` + thisPage.Title + `</h1><div>` + thisPage.Content + `</div></body></html>`*/
-  html := `<html><head><title>Jorge</title></div></body></html>`
-  fmt.Fprintln(w, html)
-}
-
-
 func testingHandler(w http.ResponseWriter, r *http.Request){
   log.Println("testing handler was called")
   RenderTemplate(w, r, "index/about", nil)
@@ -154,26 +104,24 @@ func main() {
 
   notFound := new(NotFound)
   unauthenticatedRouter.NotFoundHandler = notFound
-
-  unauthenticatedRouter.HandleFunc("/pages/{id:[0-9]+}",
-      servePage)
   unauthenticatedRouter.HandleFunc("/view", viewHandler)
   unauthenticatedRouter.HandleFunc("/edit", editHandler)
   unauthenticatedRouter.HandleFunc("/about", aboutHandler)
   unauthenticatedRouter.HandleFunc("/contact", contactHandler)
   unauthenticatedRouter.HandleFunc("/register", registrationHandler)
 
-
+  /* Static File Server */
   unauthenticatedRouter.PathPrefix("/assets").Handler(
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
-  authenticatedRouter := mux.NewRouter()
-  authenticatedRouter.HandleFunc("/testing/new", testingHandler)
+
+  /*authenticatedRouter := mux.NewRouter()
+  authenticatedRouter.HandleFunc("/testing/new", testingHandler)*/
 
   middleWare := MiddleWare{}
   middleWare.Add(unauthenticatedRouter)
-  middleWare.Add(http.HandlerFunc(AuthenticateRequest))
-  middleWare.Add(authenticatedRouter)
+  //middleWare.Add(http.HandlerFunc(AuthenticateRequest))
+  //middleWare.Add(authenticatedRouter)
 
   //Server startup
   port := os.Getenv("PORT")
@@ -184,10 +132,10 @@ func main() {
     //log.Fatal("$PORT must be set")
     log.Println("Port not set, using 8080")
     //http.ListenAndServe(":8080", rtr)
-    http.ListenAndServe(":8080", middleWare)
+    log.Fatal(http.ListenAndServe(":8080", middleWare))
     } else {
       //Used for Heroku
       //http.ListenAndServe(":" + port, rtr)
-      http.ListenAndServe(":" + port, middleWare)
+      log.Fatal(http.ListenAndServe(":" + port, middleWare))
     }
   }
