@@ -1,6 +1,9 @@
 package main
 
+import "golang.org/x/crypto/bcrypt"
+
 type User struct {
+  ID string
   Username string
   Email string
   HashedPassword string

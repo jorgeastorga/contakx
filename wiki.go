@@ -68,7 +68,23 @@ func registrationHandlerGET(w http.ResponseWriter, r *http.Request){
 
 func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
   log.Println("POST registration handler called")
-  RenderTemplate(w, r, "users/new", nil)
+  user, err := NewUser(r.FormValue("username"),
+                      r.FormValue("email"),
+                      r.FormValue("password"))
+
+   if err != nil {
+     if IsValidationError(err){
+       RenderTemplate(w, r, "/users/new", map[string] interface{}{
+         "Error": err.Error(),
+         "User": user,       })
+       return
+     }
+     panic(err)
+   }
+
+
+  //RenderTemplate(w, r, "users/new", nil)
+  http.Redirect(w, r, "/?flash=User+created", http.StatusFound)
 }
 
 /********************************************************

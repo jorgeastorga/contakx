@@ -1,5 +1,7 @@
 package main
 
+import "errors"
+
 type ValidationError error
 
 var (
