@@ -61,7 +61,13 @@ func indexHandler(w http.ResponseWriter, r *http.Request){
 /********************************************************
 *  Registration Handler
 */
-func registrationHandler(w http.ResponseWriter, r *http.Request){
+func registrationHandlerGET(w http.ResponseWriter, r *http.Request){
+  log.Println("GET registration handler called")
+  RenderTemplate(w, r, "users/new", nil)
+}
+
+func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
+  log.Println("POST registration handler called")
   RenderTemplate(w, r, "users/new", nil)
 }
 
@@ -108,7 +114,9 @@ func main() {
   unauthenticatedRouter.HandleFunc("/edit", editHandler)
   unauthenticatedRouter.HandleFunc("/about", aboutHandler)
   unauthenticatedRouter.HandleFunc("/contact", contactHandler)
-  unauthenticatedRouter.HandleFunc("/register", registrationHandler)
+  unauthenticatedRouter.HandleFunc("/register", registrationHandlerGET).Methods("GET")
+
+  unauthenticatedRouter.HandleFunc("/register", registrationHandlerPOST).Methods("POST")
 
   /* Static File Server */
   unauthenticatedRouter.PathPrefix("/assets").Handler(

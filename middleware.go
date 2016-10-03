@@ -2,7 +2,6 @@ package main
 
 import (
   "net/http"
-  "log"
 )
 
 /***********************************
@@ -37,7 +36,6 @@ func (m MiddleWare) ServeHTTP(w http.ResponseWriter, r *http.Request){
       return
     }
   }
-  log.Println("this other handler is getting called")
   //If no handlers wrote to the response, it's a 404
   http.NotFound(w,r)
 }
