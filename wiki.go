@@ -71,9 +71,18 @@ func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
   user, err := NewUser(r.FormValue("username"),
                       r.FormValue("email"),
                       r.FormValue("password"))
+  log.Println("POST registration handler called - 1.0")
+
+
+  err = globalUserStore.Save(user)
+
+    log.Println("POST registration handler called - 1.1")
 
    if err != nil {
+       log.Println("POST registration handler called - 1.2")
      if IsValidationError(err){
+       log.Println("POST registration handler called - 1.3 =")
+       log.Println(err.Error())
        RenderTemplate(w, r, "/users/new", map[string] interface{}{
          "Error": err.Error(),
          "User": user,       })
