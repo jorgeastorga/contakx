@@ -19,6 +19,30 @@
 			"path": "github.com/gorilla/mux",
 			"revision": "0a192a193177452756c362c20087ddafcf6829c4",
 			"revisionTime": "2016-09-02T15:33:43Z"
+		},
+		{
+			"checksumSHA1": "mbc/6nGk8sKvLJ5BhqWqnQU2tUs=",
+			"path": "github.com/jinzhu/gorm",
+			"revision": "5ec2f6ceb66dbb99077a2b48a5a963d073d5459d",
+			"revisionTime": "2016-09-25T06:26:37Z"
+		},
+		{
+			"checksumSHA1": "ZtoqVjpOE8VF9n6Ebqyu4vTUYas=",
+			"path": "github.com/jinzhu/inflection",
+			"revision": "74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff",
+			"revisionTime": "2016-08-17T01:46:01Z"
+		},
+		{
+			"checksumSHA1": "vE43s37+4CJ2CDU6TlOUOYE0K9c=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "84e98f45760e87786b7f24603b8166a6fa09811d",
+			"revisionTime": "2016-10-02T07:45:08Z"
+		},
+		{
+			"checksumSHA1": "JsJdKXhz87gWenMwBeejTOeNE7k=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "84e98f45760e87786b7f24603b8166a6fa09811d",
+			"revisionTime": "2016-10-02T07:45:08Z"
 		}
 	],
 	"rootPath": "github.com/jorgeastorga/gowebapp"
