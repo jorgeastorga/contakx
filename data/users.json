@@ -1,10 +1,46 @@
 {
   "Users": {
+    "": {
+      "ID": "",
+      "Email": "testing@gmail.com",
+      "HashedPassword": "",
+      "Username": "testing@gmail.com"
+    },
     "usr_0T2HamYg4mIbMlxK": {
       "ID": "usr_0T2HamYg4mIbMlxK",
       "Email": "testing@gmail.com",
       "HashedPassword": "$2a$10$spMmGdWcju.g3MOUOCDPKeYwL3bBbsOTuewfn46VDxPMkVzzsN21C",
       "Username": "test"
+    },
+    "usr_4QaFnp4r78BET03q": {
+      "ID": "usr_4QaFnp4r78BET03q",
+      "Email": "apestoso@gmail.com",
+      "HashedPassword": "$2a$10$N2GeZ.oAkDBUUokXu3yY.eUuKzW/LQsURb34QMUrt38UijkD5MeZW",
+      "Username": "apestoso"
+    },
+    "usr_NdYXVXP5tylmlPCZ": {
+      "ID": "usr_NdYXVXP5tylmlPCZ",
+      "Email": "jorge.astorga@gmail.com",
+      "HashedPassword": "$2a$10$NmGX77bYF3b.77gmSZ.CK.kGdIYdj8SWLxSIIYQWFfQlQhzUgfxLq",
+      "Username": "estebanastorga"
+    },
+    "usr_TcrLERDYV3v4ghnk": {
+      "ID": "usr_TcrLERDYV3v4ghnk",
+      "Email": "sumo@gmail.com",
+      "HashedPassword": "$2a$10$7rKZuz7lvMfCrf7x6a41CewztfYURDysOJe.Y0MvNEGbVKMkJAYQy",
+      "Username": "sumo123"
+    },
+    "usr_ulVwLA1JMgqi772l": {
+      "ID": "usr_ulVwLA1JMgqi772l",
+      "Email": "chucho@gmail.com",
+      "HashedPassword": "$2a$10$F1wjDy8U4CPy1nZbWiCY6.d4hRgXg15uctc8bTJ3KBp1mu1G.90vG",
+      "Username": "chucho"
+    },
+    "usr_xDq7DR6VByuPHCaz": {
+      "ID": "usr_xDq7DR6VByuPHCaz",
+      "Email": "superman@gmail.com",
+      "HashedPassword": "$2a$10$UwXzRI3MNgKp8Npa/9AkC.Lw1sOu3zuiDBdZFFpjPlyzw1fHXHhTm",
+      "Username": "superman"
     }
   }
 }

@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
+	"log"
 )
 
 type UserStore interface {
@@ -54,6 +55,8 @@ func NewFileUserStore(filename string) (*FileUserStore, error) {
 
 func (store FileUserStore) Save(user User) error {
 	store.Users[user.ID] = user
+
+	log.Println("Saving the user")
 
 	contents, err := json.MarshalIndent(store, "", "  ")
 	if err != nil {

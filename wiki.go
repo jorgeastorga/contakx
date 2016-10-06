@@ -79,9 +79,9 @@ func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
     log.Println("POST registration handler called - 1.1")
 
    if err != nil {
-       log.Println("POST registration handler called - 1.2")
+       log.Println("POST registration handler called - somethings wrong when saving the user")
      if IsValidationError(err){
-       log.Println("POST registration handler called - 1.3 =")
+       log.Println("POST registration handler called - a validation error ocurred")
        log.Println(err.Error())
        RenderTemplate(w, r, "/users/new", map[string] interface{}{
          "Error": err.Error(),
@@ -91,7 +91,7 @@ func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
      panic(err)
    }
 
-
+   log.Println("Looks like the user was saved successfully - moving on")
   //RenderTemplate(w, r, "users/new", nil)
   http.Redirect(w, r, "/?flash=User+created", http.StatusFound)
 }
