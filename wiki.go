@@ -1,53 +1,14 @@
 package main
 
 import (
-  "io/ioutil"
   "net/http"
   "os"
   "log"
-  "html/template"
-  "database/sql"
+  _"database/sql"
   _ "github.com/go-sql-driver/mysql"
-  "fmt"
   "github.com/gorilla/mux"
+  _"github.com/jinzhu/gorm"
 )
-
-type Page struct {
-  Title string
-  Body []byte
-  Content string
-  Date string
-}
-
-const (
-  DBHost  = "127.0.0.1"
-  DBPort  = "3306"
-  DBUser  = "root"
-  DBPass  = "testing123"
-  DBDbase = "contakx"
-)
-
-var database *sql.DB
-
-func (p *Page) save() error {
-  filename := p.Title + ".txt"
-  return ioutil.WriteFile(filename, p.Body, 0600)
-}
-
-func loadPage(title string) (*Page, error) {
-  filename := title + ".txt"
-  body,err := ioutil.ReadFile(filename)
-  if err != nil {
-    return nil, err
-  }
-
-  return &Page{Title: title, Body: body}, nil
-}
-
-func renderTemplate(w http.ResponseWriter, tmpl string, p *Page){
-  t,_ := template.ParseFiles("layout.html", tmpl + ".html")
-  t.ExecuteTemplate(w, "layout", p)
-}
 
 /********************************************************
 * View Handler
@@ -67,12 +28,13 @@ func aboutHandler(w http.ResponseWriter, r *http.Request){
 * Edit Handler
 */
 func editHandler(w http.ResponseWriter, r *http.Request){
-  title := r.URL.Path[len("/edit/"):]
+  //Saving for sample code
+  /*title := r.URL.Path[len("/edit/"):]
   p, err := loadPage(title)
   if err != nil {
     p = &Page{Title: title}
   }
-  renderTemplate(w, "edit", p)
+  renderTemplate(w, "edit", p)*/
 }
 
 /********************************************************
@@ -99,8 +61,39 @@ func indexHandler(w http.ResponseWriter, r *http.Request){
 /********************************************************
 *  Registration Handler
 */
-func registrationHandler(w http.ResponseWriter, r *http.Request){
+func registrationHandlerGET(w http.ResponseWriter, r *http.Request){
+  log.Println("GET registration handler called")
   RenderTemplate(w, r, "users/new", nil)
+}
+
+func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
+  log.Println("POST registration handler called")
+  user, err := NewUser(r.FormValue("username"),
+                      r.FormValue("email"),
+                      r.FormValue("password"))
+  log.Println("POST registration handler called - 1.0")
+
+
+  err = globalUserStore.Save(user)
+
+    log.Println("POST registration handler called - 1.1")
+
+   if err != nil {
+       log.Println("POST registration handler called - 1.2")
+     if IsValidationError(err){
+       log.Println("POST registration handler called - 1.3 =")
+       log.Println(err.Error())
+       RenderTemplate(w, r, "/users/new", map[string] interface{}{
+         "Error": err.Error(),
+         "User": user,       })
+       return
+     }
+     panic(err)
+   }
+
+
+  //RenderTemplate(w, r, "users/new", nil)
+  http.Redirect(w, r, "/?flash=User+created", http.StatusFound)
 }
 
 /********************************************************
@@ -114,21 +107,19 @@ func pageHandler(w http.ResponseWriter, r *http.Request){
   log.Println(pageID)
 }
 
+func testingHandler(w http.ResponseWriter, r *http.Request){
+  log.Println("testing handler was called")
+  RenderTemplate(w, r, "index/about", nil)
+}
 
-func servePage(w http.ResponseWriter, r *http.Request) {
-  vars := mux.Vars(r)
-  pageID := vars["id"]
-  thisPage := Page{}
-  fmt.Println(pageID)
-  err := database.QueryRow("SELECT page_title,page_content,page_date FROM pages WHERE id=?", pageID).Scan(&thisPage.Title, &thisPage.Content, &thisPage.Date)
-  if err != nil {
+/*****
+* This NotFound structure is used so that the mux not found handler
+* passes along the request to subsequent handlers when a
+* URL pattern does not match
+*/
+type NotFound struct{}
 
-    log.Println("Couldn't get page: +pageID")
-    log.Println(err.Error)
-    log.Fatal(err)
-  }
-  html := `<html><head><title>` + thisPage.Title + `</title></head><body><h1>` + thisPage.Title + `</h1><div>` + thisPage.Content + `</div></body></html>`
-  fmt.Fprintln(w, html)
+func (n *NotFound) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 /********************************************************
@@ -136,37 +127,34 @@ func servePage(w http.ResponseWriter, r *http.Request) {
 */
 func main() {
 
-  //Database connection
-  dbConn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DBUser, DBPass, DBHost, DBPort, DBDbase)
-  //dbConn := "root:testing123@tcp(localhost:3306)/contakx"
-  db, err := sql.Open("mysql", dbConn)
-  if err != nil {
-    log.Println("Couldn't connect!")
-    log.Println(err.Error)
-  } else {
-    log.Println("Connected to the database succesfully")
-  }
-  database = db
-
-
   //Route Registration
-  rtr := mux.NewRouter()
+  //rtr := mux.NewRouter()
 
-  /*rtr.HandleFunc("/pages/{id:[0-9]+}",
-    pageHandler)*/
-    rtr.HandleFunc("/pages/{id:[0-9]+}",
-      servePage)
-  rtr.HandleFunc("/", indexHandler)
-  rtr.HandleFunc("/view", viewHandler)
-  rtr.HandleFunc("/edit", editHandler)
-  rtr.HandleFunc("/about", aboutHandler)
-  rtr.HandleFunc("/contact", contactHandler)
-  rtr.HandleFunc("/register", registrationHandler)
+  unauthenticatedRouter := mux.NewRouter()
+  unauthenticatedRouter.HandleFunc("/", indexHandler)
 
-  http.Handle("/", rtr)
+  notFound := new(NotFound)
+  unauthenticatedRouter.NotFoundHandler = notFound
+  unauthenticatedRouter.HandleFunc("/view", viewHandler)
+  unauthenticatedRouter.HandleFunc("/edit", editHandler)
+  unauthenticatedRouter.HandleFunc("/about", aboutHandler)
+  unauthenticatedRouter.HandleFunc("/contact", contactHandler)
+  unauthenticatedRouter.HandleFunc("/register", registrationHandlerGET).Methods("GET")
 
-  rtr.PathPrefix("/assets").Handler(
+  unauthenticatedRouter.HandleFunc("/register", registrationHandlerPOST).Methods("POST")
+
+  /* Static File Server */
+  unauthenticatedRouter.PathPrefix("/assets").Handler(
     http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
+
+  /*authenticatedRouter := mux.NewRouter()
+  authenticatedRouter.HandleFunc("/testing/new", testingHandler)*/
+
+  middleWare := MiddleWare{}
+  middleWare.Add(unauthenticatedRouter)
+  //middleWare.Add(http.HandlerFunc(AuthenticateRequest))
+  //middleWare.Add(authenticatedRouter)
 
   //Server startup
   port := os.Getenv("PORT")
@@ -176,9 +164,11 @@ func main() {
     //Fix this when deploying a good release of the production application
     //log.Fatal("$PORT must be set")
     log.Println("Port not set, using 8080")
-    http.ListenAndServe(":8080", rtr)
+    //http.ListenAndServe(":8080", rtr)
+    log.Fatal(http.ListenAndServe(":8080", middleWare))
     } else {
       //Used for Heroku
-      http.ListenAndServe(":" + port, rtr)
+      //http.ListenAndServe(":" + port, rtr)
+      log.Fatal(http.ListenAndServe(":" + port, middleWare))
     }
   }

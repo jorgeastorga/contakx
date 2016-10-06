@@ -1,0 +1,10 @@
+{
+  "Users": {
+    "usr_0T2HamYg4mIbMlxK": {
+      "ID": "usr_0T2HamYg4mIbMlxK",
+      "Email": "testing@gmail.com",
+      "HashedPassword": "$2a$10$spMmGdWcju.g3MOUOCDPKeYwL3bBbsOTuewfn46VDxPMkVzzsN21C",
+      "Username": "test"
+    }
+  }
+}

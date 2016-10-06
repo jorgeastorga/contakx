@@ -1,0 +1,33 @@
+package main
+
+import(
+  "fmt"
+  "github.com/jinzhu/gorm"
+  "log"
+  "database/sql"
+)
+const (
+  DBHost  = "127.0.0.1"
+  DBPort  = "3306"
+  DBUser  = "root"
+  DBPass  = "testing123"
+  DBDbase = "contakx"
+)
+//var database *sql.DB
+var database gorm.DB
+
+//Database connection
+func init(){
+  log.Println("Jorge is printing the line")
+  var dbConn = fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DBUser, DBPass, DBHost, DBPort, DBDbase)
+  dbConn = "root:testing123@tcp(localhost:3306)/contakx"
+
+  db, err := sql.Open("mysql", dbConn)
+  if err != nil {
+    log.Println("Couldn't connect!")
+    log.Println(err.Error)
+  } else {
+    log.Println("Connected to the database succesfully")
+  }
+  //database = db
+}
