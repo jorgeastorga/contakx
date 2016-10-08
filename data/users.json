@@ -24,11 +24,29 @@
       "HashedPassword": "$2a$10$N2GeZ.oAkDBUUokXu3yY.eUuKzW/LQsURb34QMUrt38UijkD5MeZW",
       "Username": "apestoso"
     },
+    "usr_FUOigsRke9DlEM4X": {
+      "ID": "usr_FUOigsRke9DlEM4X",
+      "Email": "asdasdasdasd@gmail.com",
+      "HashedPassword": "$2a$10$N4uDJ0KNPJo7V3h2LDzDhe2xa9oNCPEcnK.K/kYXH1pgg/kAdKLvK",
+      "Username": "testasdasdasd"
+    },
+    "usr_H2l6vm04JhNSicqX": {
+      "ID": "usr_H2l6vm04JhNSicqX",
+      "Email": "mal@mal.com",
+      "HashedPassword": "$2a$10$kS7qckze8AWgi3R3OEQeTOjazoQf2eL0MsoaeG3b3t/8uuZxh2J2.",
+      "Username": "mail"
+    },
     "usr_NdYXVXP5tylmlPCZ": {
       "ID": "usr_NdYXVXP5tylmlPCZ",
       "Email": "jorge.astorga@gmail.com",
       "HashedPassword": "$2a$10$NmGX77bYF3b.77gmSZ.CK.kGdIYdj8SWLxSIIYQWFfQlQhzUgfxLq",
       "Username": "estebanastorga"
+    },
+    "usr_SmVkh8iudL25oYMf": {
+      "ID": "usr_SmVkh8iudL25oYMf",
+      "Email": "asdsa@gmail.com",
+      "HashedPassword": "$2a$10$YD9REZinXuv8UmRECQmuge8ROEeGoeiLUpW1A5LgCtWW/xiGrYXdS",
+      "Username": "etasdadasd"
     },
     "usr_TcrLERDYV3v4ghnk": {
       "ID": "usr_TcrLERDYV3v4ghnk",
@@ -36,11 +54,23 @@
       "HashedPassword": "$2a$10$7rKZuz7lvMfCrf7x6a41CewztfYURDysOJe.Y0MvNEGbVKMkJAYQy",
       "Username": "sumo123"
     },
+    "usr_lGMZEmFJucB3nreO": {
+      "ID": "usr_lGMZEmFJucB3nreO",
+      "Email": "adasdasds@gasd.com",
+      "HashedPassword": "$2a$10$MG597sr0WSjmv.Qeb/BdquJhAYsp0opiR7TtB6ebSBTafMtDnzkmy",
+      "Username": "tasdasdasdasd"
+    },
     "usr_ulVwLA1JMgqi772l": {
       "ID": "usr_ulVwLA1JMgqi772l",
       "Email": "chucho@gmail.com",
       "HashedPassword": "$2a$10$F1wjDy8U4CPy1nZbWiCY6.d4hRgXg15uctc8bTJ3KBp1mu1G.90vG",
       "Username": "chucho"
+    },
+    "usr_vVL4sBtf3XxEjcax": {
+      "ID": "usr_vVL4sBtf3XxEjcax",
+      "Email": "testuser@gmail.com",
+      "HashedPassword": "$2a$10$JRjsNN0Uhyx/nOCNpfrdne8FWSQuFQSaeiAJbdOYMMPS4GaD.WdSm",
+      "Username": "testuser"
     },
     "usr_wW2A27Un1r1f91F0": {
       "ID": "usr_wW2A27Un1r1f91F0",
