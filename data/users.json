@@ -6,6 +6,12 @@
       "HashedPassword": "",
       "Username": "testing@gmail.com"
     },
+    "usr_0I6Wm3u3JCdkVdXO": {
+      "ID": "usr_0I6Wm3u3JCdkVdXO",
+      "Email": "testuser1@gmail.com",
+      "HashedPassword": "$2a$10$4nfewZ6oY/WgqIv2OD7YVeLmvi.x2lBBNgLhMOAtUDsNWt2FiaZhm",
+      "Username": "testuser1"
+    },
     "usr_0T2HamYg4mIbMlxK": {
       "ID": "usr_0T2HamYg4mIbMlxK",
       "Email": "testing@gmail.com",
@@ -35,6 +41,12 @@
       "Email": "chucho@gmail.com",
       "HashedPassword": "$2a$10$F1wjDy8U4CPy1nZbWiCY6.d4hRgXg15uctc8bTJ3KBp1mu1G.90vG",
       "Username": "chucho"
+    },
+    "usr_wW2A27Un1r1f91F0": {
+      "ID": "usr_wW2A27Un1r1f91F0",
+      "Email": "newuser1@gmail.com",
+      "HashedPassword": "$2a$10$PfpS57SPIVDnoUmOF7w6Qek5nrHmYIZCTi77q5abnSKi4w.J6l.3C",
+      "Username": "newuser1"
     },
     "usr_xDq7DR6VByuPHCaz": {
       "ID": "usr_xDq7DR6VByuPHCaz",

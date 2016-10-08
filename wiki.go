@@ -32,9 +32,9 @@ func editHandler(w http.ResponseWriter, r *http.Request){
   /*title := r.URL.Path[len("/edit/"):]
   p, err := loadPage(title)
   if err != nil {
-    p = &Page{Title: title}
-  }
-  renderTemplate(w, "edit", p)*/
+  p = &Page{Title: title}
+}
+renderTemplate(w, "edit", p)*/
 }
 
 /********************************************************
@@ -62,37 +62,39 @@ func indexHandler(w http.ResponseWriter, r *http.Request){
 *  Registration Handler
 */
 func registrationHandlerGET(w http.ResponseWriter, r *http.Request){
-  log.Println("GET registration handler called")
   RenderTemplate(w, r, "users/new", nil)
 }
 
 func registrationHandlerPOST(w http.ResponseWriter, r *http.Request){
-  log.Println("POST registration handler called")
-  user, err := NewUser(r.FormValue("username"),
-                      r.FormValue("email"),
-                      r.FormValue("password"))
-  log.Println("POST registration handler called - 1.0")
+  user, err := NewUser(
+    r.FormValue("username"),
+    r.FormValue("email"),
+    r.FormValue("password"))
 
+  if err != nil {
+    if IsValidationError(err){
+      log.Println(err.Error())
+      RenderTemplate(w, r, "/users/new", map[string] interface{}{
+        "Error": err.Error(),
+        "User": user,
+      })
+      panic(err)
+      return
+    }
+  }
 
   err = globalUserStore.Save(user)
+  if err != nil {
+    panic(err)
+    return
+  }
 
-    log.Println("POST registration handler called - 1.1")
+  log.Println("User saved successfully")
 
-   if err != nil {
-       log.Println("POST registration handler called - somethings wrong when saving the user")
-     if IsValidationError(err){
-       log.Println("POST registration handler called - a validation error ocurred")
-       log.Println(err.Error())
-       RenderTemplate(w, r, "/users/new", map[string] interface{}{
-         "Error": err.Error(),
-         "User": user,       })
-       return
-     }
-     panic(err)
-   }
+  //Create a session
+  session := NewSession(w)
+  session.UserID = user.ID
 
-   log.Println("Looks like the user was saved successfully - moving on")
-  //RenderTemplate(w, r, "users/new", nil)
   http.Redirect(w, r, "/?flash=User+created", http.StatusFound)
 }
 
