@@ -54,6 +54,24 @@
       "HashedPassword": "$2a$10$7rKZuz7lvMfCrf7x6a41CewztfYURDysOJe.Y0MvNEGbVKMkJAYQy",
       "Username": "sumo123"
     },
+    "usr_bhMz41Wp9QDhclAG": {
+      "ID": "usr_bhMz41Wp9QDhclAG",
+      "Email": "quisquiris@gmail.com",
+      "HashedPassword": "$2a$10$4GSjn.EhBDIIlc0jnN26z.2XdpYyj7hT67inT/DO/zsDhKdOrsw/G",
+      "Username": "quisquiris"
+    },
+    "usr_d38PCoW7KXTve9Yx": {
+      "ID": "usr_d38PCoW7KXTve9Yx",
+      "Email": "testign123-22@gmail.com",
+      "HashedPassword": "$2a$10$qIqfFRptBFUyMeql0e.dQuCHZIg41IHZFbOqiyzyDpAXmCBg6JprS",
+      "Username": "testing123@@asdasdasd"
+    },
+    "usr_dsQ9EPeXZFDO0WwJ": {
+      "ID": "usr_dsQ9EPeXZFDO0WwJ",
+      "Email": "testing123-test@gmail.com",
+      "HashedPassword": "$2a$10$MdZcLLX0oxraxcP9r78j4uX22KYaaSoJCDKiW2GPTCxAOHh75NK56",
+      "Username": "testing123@@"
+    },
     "usr_lGMZEmFJucB3nreO": {
       "ID": "usr_lGMZEmFJucB3nreO",
       "Email": "adasdasds@gasd.com",
