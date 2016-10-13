@@ -160,6 +160,9 @@ func main() {
 	secureRouter := mux.NewRouter()
 	secureRouter.HandleFunc("/sign-out", loginSessionHandlerDestroy).Methods("GET")
 
+	secureRouter.HandleFunc("/account", userHandlerEdit).Methods("GET")
+	secureRouter.HandleFunc("/account", userHandlerUpdate).Methods("POST")
+
 	middleWare := MiddleWare{}
 	middleWare.Add(unauthenticatedRouter)
 	middleWare.Add(http.HandlerFunc(RequireLogin))
