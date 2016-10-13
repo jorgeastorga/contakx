@@ -12,7 +12,7 @@ type User struct {
 const (
 	hashCost       = 10
 	passwordLength = 6
-	userIDLength = 16
+	userIDLength   = 16
 )
 
 func NewUser(username, email, password string) (User, error) {
@@ -58,4 +58,32 @@ func NewUser(username, email, password string) (User, error) {
 	user.HashedPassword = string(hashedPassword)
 	user.ID = GenerateID("usr", userIDLength)
 	return user, err
+}
+
+/**
+*
+*
+ */
+func FindUser(username string, password string) (*User, error) {
+
+	//create a dummy user with username supplied
+	out := &User{
+		Username: username,
+	}
+
+	existingUser, err := globalUserStore.FindByUsername(username)
+	if err != nil {
+		return out, err
+	}
+	if existingUser == nil {
+		return out, errCredentialsIncorrect
+	}
+
+	if bcrypt.CompareHashAndPassword(
+		[]byte(existingUser.HashedPassword),
+		[]byte(password),
+	) != nil {
+		return out, errCredentialsIncorrect
+	}
+	return existingUser, nil
 }

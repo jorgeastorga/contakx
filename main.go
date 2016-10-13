@@ -150,8 +150,9 @@ func main() {
 	unauthenticatedRouter.HandleFunc("/register", registrationHandlerGET).Methods("GET")
 	unauthenticatedRouter.HandleFunc("/register", registrationHandlerPOST).Methods("POST")
 
-	//unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerNew).Methods("GET")
-	//unauthenticatedRouter.HandleFunc("login", loginSessionHandlerCreate).Methods("POST")
+	unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerNew).Methods("GET")
+	unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerCreate).Methods("POST")
+
 	/* Static File Server */
 	unauthenticatedRouter.PathPrefix("/assets").Handler(
 		http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
