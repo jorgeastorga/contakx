@@ -36,6 +36,18 @@
       "HashedPassword": "$2a$10$N2GeZ.oAkDBUUokXu3yY.eUuKzW/LQsURb34QMUrt38UijkD5MeZW",
       "Username": "apestoso"
     },
+    "usr_71f0W6W4zxPsPWzE": {
+      "ID": "usr_71f0W6W4zxPsPWzE",
+      "Email": "estebanastorga12345678@mail.com",
+      "HashedPassword": "$2a$10$/ty4h3JxoKdgWjPULUSJuOQEnkHKw74XWUjikktizUbWBj5XeHHFm",
+      "Username": "estebanastorga12345678"
+    },
+    "usr_CM37Z2s8RekASpeC": {
+      "ID": "usr_CM37Z2s8RekASpeC",
+      "Email": "estebanastorga1234567@mail.com",
+      "HashedPassword": "$2a$10$cuIjxp4H4MDttGJmg9ahTOePE3.LyQzXjthSnmPNwTxRKjS9UwX5i",
+      "Username": "estebanastorga1234567"
+    },
     "usr_DWcQCJG7aADovSvJ": {
       "ID": "usr_DWcQCJG7aADovSvJ",
       "Email": "testadssad@gmail.com",
@@ -101,6 +113,12 @@
       "Email": "testing123-test@gmail.com",
       "HashedPassword": "$2a$10$MdZcLLX0oxraxcP9r78j4uX22KYaaSoJCDKiW2GPTCxAOHh75NK56",
       "Username": "testing123@@"
+    },
+    "usr_eKd1V2j3TQSItV45": {
+      "ID": "usr_eKd1V2j3TQSItV45",
+      "Email": "estebanastorga123456@mail.com",
+      "HashedPassword": "$2a$10$pM1.73NoS2tZjAe27/fPceLhHDEiQLbh4GCRm/EFNV5GBWtKaaePu",
+      "Username": "estebanastorga123456"
     },
     "usr_fcEKCicdyaXmW1oM": {
       "ID": "usr_fcEKCicdyaXmW1oM",

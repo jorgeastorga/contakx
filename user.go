@@ -91,7 +91,7 @@ func FindUser(username string, password string) (*User, error) {
 /**
 *
 *
- */
+*/
 
 func UpdateUser(user *User, email, currentPassword, newPassword string) (User, error) {
 	out := *user

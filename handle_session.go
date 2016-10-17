@@ -59,7 +59,7 @@ func loginSessionHandlerCreate(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if next == "" {
-		next = "/"
+		next = "/account"
 	}
 
 	//Redirect to the page the user wanted to go

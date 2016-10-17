@@ -16,7 +16,7 @@ func userHandlerEdit(w http.ResponseWriter, r *http.Request) {
 /**
 *
 *
- */
+*/
 func userHandlerUpdate(w http.ResponseWriter, r *http.Request) {
 	currentUser := RequestUser(r)
 	email := r.FormValue("email")

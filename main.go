@@ -1,26 +1,32 @@
+/**
+* Context
+*
+* Main application executable
+*
+*
+*/
 package main
 
 import (
-	_ "database/sql"
 	"log"
 	"net/http"
 	"os"
-
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/gorilla/mux"
+	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/jinzhu/gorm"
+	_ "database/sql"
 )
 
 /********************************************************
 * View Handler
- */
+*/
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("viewHandler was called")
 }
 
 /********************************************************
-* View Handler
- */
+* About Handler
+*/
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, r, "index/about", nil)
 }
@@ -61,17 +67,24 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 /********************************************************
 *  Registration Handler
- */
+*  Used to render the registration view/page
+*/
 func registrationHandlerGET(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, r, "users/new", nil)
 }
 
+/********************************************************
+*  Registration Handler
+*  Used to save the registration information
+*/
 func registrationHandlerPOST(w http.ResponseWriter, r *http.Request) {
+	//create user from form information
 	user, err := NewUser(
 		r.FormValue("username"),
 		r.FormValue("email"),
 		r.FormValue("password"))
 
+	//error checking for user created
 	if err != nil {
 		if IsValidationError(err) {
 			log.Println(err.Error())
@@ -84,15 +97,14 @@ func registrationHandlerPOST(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	//(Attemp to)Save the user
 	err = globalUserStore.Save(user)
 	if err != nil {
 		panic(err)
 		return
 	}
 
-	log.Println("User saved successfully")
-
-	//Create a session
+	//Create a session for newly created user
 	session := NewSession(w)
 	session.UserID = user.ID
 	err = globalSessionStore.Save(session)
@@ -100,7 +112,8 @@ func registrationHandlerPOST(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 
-	http.Redirect(w, r, "/?flash=User+created", http.StatusFound)
+	//Redirect user to account view/page
+	http.Redirect(w, r, "/account?flash=User+created", http.StatusFound)
 }
 
 /********************************************************
@@ -131,17 +144,21 @@ func (n *NotFound) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 
 /********************************************************
 * Main function to initiate the application
- */
+*/
 func main() {
 
 	//Route Registration
-	//rtr := mux.NewRouter()
-
 	unauthenticatedRouter := mux.NewRouter()
-	unauthenticatedRouter.HandleFunc("/", indexHandler)
+
+
+	/* Static File Server */
+	unauthenticatedRouter.PathPrefix("/assets").Handler(
+	http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
 
 	notFound := new(NotFound)
 	unauthenticatedRouter.NotFoundHandler = notFound
+	unauthenticatedRouter.HandleFunc("/", indexHandler)
 	unauthenticatedRouter.HandleFunc("/view", viewHandler)
 	unauthenticatedRouter.HandleFunc("/edit", editHandler)
 	unauthenticatedRouter.HandleFunc("/about", aboutHandler)
@@ -153,16 +170,14 @@ func main() {
 	unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerNew).Methods("GET")
 	unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerCreate).Methods("POST")
 
-	/* Static File Server */
-	unauthenticatedRouter.PathPrefix("/assets").Handler(
-		http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
+	// Registration of secure routes
 	secureRouter := mux.NewRouter()
 	secureRouter.HandleFunc("/sign-out", loginSessionHandlerDestroy).Methods("GET")
-
 	secureRouter.HandleFunc("/account", userHandlerEdit).Methods("GET")
 	secureRouter.HandleFunc("/account", userHandlerUpdate).Methods("POST")
 
+	//Setup middleware (chain model)
 	middleWare := MiddleWare{}
 	middleWare.Add(unauthenticatedRouter)
 	middleWare.Add(http.HandlerFunc(RequireLogin))
@@ -175,11 +190,9 @@ func main() {
 		//Fix this when deploying a good release of the production application
 		//log.Fatal("$PORT must be set")
 		log.Println("Port not set, using 8080")
-		//http.ListenAndServe(":8080", rtr)
 		log.Fatal(http.ListenAndServe(":8080", middleWare))
 	} else {
 		//Used for Heroku
-		//http.ListenAndServe(":" + port, rtr)
 		log.Fatal(http.ListenAndServe(":"+port, middleWare))
 	}
 }
