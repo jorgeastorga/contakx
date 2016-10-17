@@ -3,6 +3,7 @@
 <h1>Profile</h1>
 <div class="row">
   <form action="/account" method="POST">
+
     <div class="col-md-4">
       <div class="form-group">
         <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTdkMTQ4MWE2ZSB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1N2QxNDgxYTZlIj48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQzLjcxODc1IiB5PSI3NC41MzI4MTI1Ij4xNDB4MTQwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="..." class="img-thumbnail">
@@ -32,7 +33,7 @@
         <input type="password" name="newPassword" id="newPassword" class="form-control"/>
       </div>
 
-      <input type="submit" value="Save" class="btn-btn-primary"/>
+
     </div>
     <div class="col-md-4">
 
@@ -55,9 +56,7 @@
         <label for="newLastName">Last Name</label>
         <input type="text" name="lastName" value="{{ .User.LastName}}" id="newLastName" class="form-control" />
       </div>
-
-
-
+      <input type="submit" value="Save" class="btn-btn-primary"/>
     </div>
   </form>
 </div>

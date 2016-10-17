@@ -25,8 +25,20 @@ func userHandlerUpdate(w http.ResponseWriter, r *http.Request) {
 	email := r.FormValue("email")
 	currentPassword := r.FormValue("currentPassword")
 	newPassword := r.FormValue("newPassword")
+	firstName := r.FormValue("firstName")
+	log.Println(firstName)
 
-	user, err := UpdateUser(currentUser, email, currentPassword, newPassword)
+	lastName := r.FormValue("lastName")
+	log.Println(lastName)
+
+	user, err := UpdateUser(currentUser,
+		email,
+		currentPassword,
+		newPassword,
+		firstName,
+		lastName)
+
+
 	if err != nil {
 		if IsValidationError(err) {
 			RenderTemplate(w, r, "users/edit", map[string]interface{}{

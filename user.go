@@ -3,6 +3,7 @@ package main
 import (
 	"golang.org/x/crypto/bcrypt"
 	"time"
+	"log"
 	)
 
 type User struct {
@@ -106,10 +107,16 @@ func FindUser(username string, password string) (*User, error) {
 *
 *
 */
-func UpdateUser(user *User, email, currentPassword, newPassword string) (User, error) {
+func UpdateUser(user *User,
+		email string,
+		currentPassword string,
+		newPassword string,
+		firstName string,
+		lastName string) (User, error) {
+
 	out := *user
 	out.Email = email
-
+	
 	//Check if the email exists
 	existingUser, err := globalUserStore.FindByEmail(email)
 	if err != nil {
@@ -122,8 +129,10 @@ func UpdateUser(user *User, email, currentPassword, newPassword string) (User, e
 
 	//At this point, we can update the email address
 	user.Email = email
+	user.FirstName = firstName
+	user.LastName = lastName
 
-	//No current password? Don't try update the password
+	//No current password? Don't try to update the password
 	if currentPassword == "" {
 		return out, nil
 	}
