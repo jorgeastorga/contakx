@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"os"
 	"strings"
-	"log"
 )
 
+//An interface
 type UserStore interface {
 	Find(string) (*User, error)
 	FindByEmail(string) (*User, error)
@@ -16,13 +16,13 @@ type UserStore interface {
 	Save(User) error
 }
 
-type FileUserStore struct {
-	filename string
-	Users    map[string]User
-}
-
+//Globa variable UserStore (representing the interface)
 var globalUserStore UserStore
 
+/**
+* Post Condition:
+* - globalUserStore global variable initialized for use
+*/
 func init() {
 	store, err := NewFileUserStore("./data/users.json")
 	if err != nil {
@@ -31,7 +31,19 @@ func init() {
 	globalUserStore = store
 }
 
+
+//A FileUserStore represents the intreface to store users in files (json)
+type FileUserStore struct {
+	filename string
+	Users    map[string]User
+}
+
+
+/**
+*
+*/
 func NewFileUserStore(filename string) (*FileUserStore, error) {
+
 	store := &FileUserStore{
 		Users:    map[string]User{},
 		filename: filename,
@@ -53,10 +65,12 @@ func NewFileUserStore(filename string) (*FileUserStore, error) {
 	return store, nil
 }
 
+/**
+* Function used to save the user
+*
+*/
 func (store FileUserStore) Save(user User) error {
 	store.Users[user.ID] = user
-
-	log.Println("Saving the user")
 
 	contents, err := json.MarshalIndent(store, "", "  ")
 	if err != nil {
@@ -66,6 +80,10 @@ func (store FileUserStore) Save(user User) error {
 	return ioutil.WriteFile(store.filename, contents, 0660)
 }
 
+/**
+*
+*
+*/
 func (store FileUserStore) Find(id string) (*User, error) {
 	user, ok := store.Users[id]
 	if ok {
@@ -74,6 +92,10 @@ func (store FileUserStore) Find(id string) (*User, error) {
 	return nil, nil
 }
 
+/**
+*
+*
+*/
 func (store FileUserStore) FindByUsername(username string) (*User, error) {
 	if username == "" {
 		return nil, nil
@@ -87,6 +109,10 @@ func (store FileUserStore) FindByUsername(username string) (*User, error) {
 	return nil, nil
 }
 
+/**
+*
+*
+*/
 func (store FileUserStore) FindByEmail(email string) (*User, error) {
 	if email == "" {
 		return nil, nil

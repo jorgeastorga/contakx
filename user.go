@@ -1,12 +1,18 @@
 package main
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"golang.org/x/crypto/bcrypt"
+	"time"
+	)
 
 type User struct {
 	ID             string
 	Email          string
 	HashedPassword string
 	Username       string
+	FirstName			 string
+	LastName			 string
+	AccountCreated time.Time
 }
 
 const (
@@ -15,11 +21,16 @@ const (
 	userIDLength   = 16
 )
 
+/**
+*
+* Post Conditions: returns a new user object
+*/
 func NewUser(username, email, password string) (User, error) {
 	user := User{
 		Email:    email,
 		Username: username,
 	}
+
 	if username == "" {
 		return user, errNoUsername
 	}
@@ -54,16 +65,19 @@ func NewUser(username, email, password string) (User, error) {
 		return user, errEmailExists
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), hashCost)
+	hashedPassword, err :=
+		bcrypt.GenerateFromPassword([]byte(password), hashCost)
 	user.HashedPassword = string(hashedPassword)
 	user.ID = GenerateID("usr", userIDLength)
+	user.AccountCreated = time.Now()
+
 	return user, err
 }
 
 /**
 *
 *
- */
+*/
 func FindUser(username string, password string) (*User, error) {
 
 	//create a dummy user with username supplied
@@ -92,7 +106,6 @@ func FindUser(username string, password string) (*User, error) {
 *
 *
 */
-
 func UpdateUser(user *User, email, currentPassword, newPassword string) (User, error) {
 	out := *user
 	out.Email = email
@@ -130,7 +143,8 @@ func UpdateUser(user *User, email, currentPassword, newPassword string) (User, e
 		return out, errPasswordTooShort
 	}
 
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(newPassword), hashCost)
+	hashedPassword, err :=
+		bcrypt.GenerateFromPassword([]byte(newPassword), hashCost)
 	user.HashedPassword = string(hashedPassword)
 	return out, err
 }

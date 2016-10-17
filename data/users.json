@@ -4,175 +4,271 @@
       "ID": "",
       "Email": "testing@gmail.com",
       "HashedPassword": "",
-      "Username": "testing@gmail.com"
+      "Username": "testing@gmail.com",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_0I6Wm3u3JCdkVdXO": {
       "ID": "usr_0I6Wm3u3JCdkVdXO",
       "Email": "testuser1@gmail.com",
       "HashedPassword": "$2a$10$4nfewZ6oY/WgqIv2OD7YVeLmvi.x2lBBNgLhMOAtUDsNWt2FiaZhm",
-      "Username": "testuser1"
+      "Username": "testuser1",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_0T2HamYg4mIbMlxK": {
       "ID": "usr_0T2HamYg4mIbMlxK",
       "Email": "testing@gmail.com",
       "HashedPassword": "$2a$10$spMmGdWcju.g3MOUOCDPKeYwL3bBbsOTuewfn46VDxPMkVzzsN21C",
-      "Username": "test"
+      "Username": "test",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_1JU17j6TMjTf4Umv": {
       "ID": "usr_1JU17j6TMjTf4Umv",
       "Email": "asdkasdlhjfkadhfd@gmail.com",
       "HashedPassword": "$2a$10$4W0SaKziQEksU5hXOy.hSudchlje59rm6R6UjjC/MNzJZv6/rCr9y",
-      "Username": "asdasdasd"
+      "Username": "asdasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_35Qum3jtbT7rDhTW": {
       "ID": "usr_35Qum3jtbT7rDhTW",
       "Email": "estebanastorga123@mail.com",
       "HashedPassword": "$2a$10$rrGi2uzYrgOBABpAPEb1AeGU3nA2ueRKL9qfbmsFSXmR3m1Cx/1Iq",
-      "Username": "estebanastorga123"
+      "Username": "estebanastorga123",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
+    },
+    "usr_3NpBMa5i1T7b86rY": {
+      "ID": "usr_3NpBMa5i1T7b86rY",
+      "Email": "estebanastorgaa@mail.com",
+      "HashedPassword": "$2a$10$0Fx1oEasZJ9fEEaEXhJdsOCABG9DMjRQ1KCmjUmWnLyDe6Z7ITNp2",
+      "Username": "estebanastorga@1",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "2016-10-16T22:36:18.45410534-07:00"
     },
     "usr_4QaFnp4r78BET03q": {
       "ID": "usr_4QaFnp4r78BET03q",
       "Email": "apestoso@gmail.com",
       "HashedPassword": "$2a$10$N2GeZ.oAkDBUUokXu3yY.eUuKzW/LQsURb34QMUrt38UijkD5MeZW",
-      "Username": "apestoso"
+      "Username": "apestoso",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_71f0W6W4zxPsPWzE": {
       "ID": "usr_71f0W6W4zxPsPWzE",
       "Email": "estebanastorga12345678@mail.com",
       "HashedPassword": "$2a$10$/ty4h3JxoKdgWjPULUSJuOQEnkHKw74XWUjikktizUbWBj5XeHHFm",
-      "Username": "estebanastorga12345678"
+      "Username": "estebanastorga12345678",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_CM37Z2s8RekASpeC": {
       "ID": "usr_CM37Z2s8RekASpeC",
       "Email": "estebanastorga1234567@mail.com",
       "HashedPassword": "$2a$10$cuIjxp4H4MDttGJmg9ahTOePE3.LyQzXjthSnmPNwTxRKjS9UwX5i",
-      "Username": "estebanastorga1234567"
+      "Username": "estebanastorga1234567",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_DWcQCJG7aADovSvJ": {
       "ID": "usr_DWcQCJG7aADovSvJ",
       "Email": "testadssad@gmail.com",
       "HashedPassword": "$2a$10$0zIs7NYaO3F8TFvwvmMLeOPFRFo0A80E6hF5cymn63luNO9rIyCMC",
-      "Username": "testingasasdasd"
+      "Username": "testingasasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_FUOigsRke9DlEM4X": {
       "ID": "usr_FUOigsRke9DlEM4X",
       "Email": "asdasdasdasd@gmail.com",
       "HashedPassword": "$2a$10$N4uDJ0KNPJo7V3h2LDzDhe2xa9oNCPEcnK.K/kYXH1pgg/kAdKLvK",
-      "Username": "testasdasdasd"
+      "Username": "testasdasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_H2l6vm04JhNSicqX": {
       "ID": "usr_H2l6vm04JhNSicqX",
       "Email": "mal@mal.com",
       "HashedPassword": "$2a$10$kS7qckze8AWgi3R3OEQeTOjazoQf2eL0MsoaeG3b3t/8uuZxh2J2.",
-      "Username": "mail"
+      "Username": "mail",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_NdYXVXP5tylmlPCZ": {
       "ID": "usr_NdYXVXP5tylmlPCZ",
       "Email": "jorge.astorga@gmail.com",
       "HashedPassword": "$2a$10$NmGX77bYF3b.77gmSZ.CK.kGdIYdj8SWLxSIIYQWFfQlQhzUgfxLq",
-      "Username": "estebanastorga"
+      "Username": "estebanastorga",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_SmVkh8iudL25oYMf": {
       "ID": "usr_SmVkh8iudL25oYMf",
       "Email": "asdsa@gmail.com",
       "HashedPassword": "$2a$10$YD9REZinXuv8UmRECQmuge8ROEeGoeiLUpW1A5LgCtWW/xiGrYXdS",
-      "Username": "etasdadasd"
+      "Username": "etasdadasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_TcrLERDYV3v4ghnk": {
       "ID": "usr_TcrLERDYV3v4ghnk",
       "Email": "sumo@gmail.com",
       "HashedPassword": "$2a$10$7rKZuz7lvMfCrf7x6a41CewztfYURDysOJe.Y0MvNEGbVKMkJAYQy",
-      "Username": "sumo123"
+      "Username": "sumo123",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_U27xVSBlB66X9OCh": {
       "ID": "usr_U27xVSBlB66X9OCh",
       "Email": "testingabcdefg1@gmail.com",
       "HashedPassword": "$2a$10$JTYkFCvwVTXBLJsRwC4Dxe0Uq51TL0IORQCfrvbE3wNBrpAeM9WXC",
-      "Username": "testingabcdefg"
+      "Username": "testingabcdefg",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_ZON5N1PfDG7AbtDm": {
       "ID": "usr_ZON5N1PfDG7AbtDm",
       "Email": "asdklfhafasjdfhjads@gmail.com",
       "HashedPassword": "$2a$10$dFVjDuyl/znFnu1iGKzNROcz3RxOATp3zD3QJHyva6OVDEa/8rKGe",
-      "Username": "asdasdasdasjkd"
+      "Username": "asdasdasdasjkd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_bhMz41Wp9QDhclAG": {
       "ID": "usr_bhMz41Wp9QDhclAG",
       "Email": "quisquiris@gmail.com",
       "HashedPassword": "$2a$10$4GSjn.EhBDIIlc0jnN26z.2XdpYyj7hT67inT/DO/zsDhKdOrsw/G",
-      "Username": "quisquiris"
+      "Username": "quisquiris",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_d38PCoW7KXTve9Yx": {
       "ID": "usr_d38PCoW7KXTve9Yx",
       "Email": "testign123-22@gmail.com",
       "HashedPassword": "$2a$10$qIqfFRptBFUyMeql0e.dQuCHZIg41IHZFbOqiyzyDpAXmCBg6JprS",
-      "Username": "testing123@@asdasdasd"
+      "Username": "testing123@@asdasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_dsQ9EPeXZFDO0WwJ": {
       "ID": "usr_dsQ9EPeXZFDO0WwJ",
       "Email": "testing123-test@gmail.com",
       "HashedPassword": "$2a$10$MdZcLLX0oxraxcP9r78j4uX22KYaaSoJCDKiW2GPTCxAOHh75NK56",
-      "Username": "testing123@@"
+      "Username": "testing123@@",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_eKd1V2j3TQSItV45": {
       "ID": "usr_eKd1V2j3TQSItV45",
       "Email": "estebanastorga123456@mail.com",
       "HashedPassword": "$2a$10$pM1.73NoS2tZjAe27/fPceLhHDEiQLbh4GCRm/EFNV5GBWtKaaePu",
-      "Username": "estebanastorga123456"
+      "Username": "estebanastorga123456",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_fcEKCicdyaXmW1oM": {
       "ID": "usr_fcEKCicdyaXmW1oM",
       "Email": "jorgeastorga@gmail.com",
       "HashedPassword": "$2a$10$znKn9SOoTXacRQANVA5SLu/s3qwkBY7/fT.J/vguBfunnJtEPo4T.",
-      "Username": "jorgeastorga"
+      "Username": "jorgeastorga",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_lGMZEmFJucB3nreO": {
       "ID": "usr_lGMZEmFJucB3nreO",
       "Email": "adasdasds@gasd.com",
       "HashedPassword": "$2a$10$MG597sr0WSjmv.Qeb/BdquJhAYsp0opiR7TtB6ebSBTafMtDnzkmy",
-      "Username": "tasdasdasdasd"
+      "Username": "tasdasdasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_lgFZV5HKUeB1calN": {
       "ID": "usr_lgFZV5HKUeB1calN",
       "Email": "asdjjkasdasd@gmail.com",
       "HashedPassword": "$2a$10$H/9AB6/Xy84JgQpcwzX.be4Jtk68OHGMOvi18R1Ee/H2DG2JMEI5i",
-      "Username": "asdasdasdasdasd"
+      "Username": "asdasdasdasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_ulVwLA1JMgqi772l": {
       "ID": "usr_ulVwLA1JMgqi772l",
       "Email": "chucho@gmail.com",
       "HashedPassword": "$2a$10$F1wjDy8U4CPy1nZbWiCY6.d4hRgXg15uctc8bTJ3KBp1mu1G.90vG",
-      "Username": "chucho"
+      "Username": "chucho",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_vLoI4hlzCOOck69w": {
       "ID": "usr_vLoI4hlzCOOck69w",
       "Email": "asdasdasdasd21312321!@gmail.com",
       "HashedPassword": "$2a$10$h1IxIyoai3MZ6mI/U/sk5OVW/nZEM6NP07GpE8NixlriHk2nk2odC",
-      "Username": "asdasdasdasda"
+      "Username": "asdasdasdasda",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_vVL4sBtf3XxEjcax": {
       "ID": "usr_vVL4sBtf3XxEjcax",
       "Email": "testuser@gmail.com",
       "HashedPassword": "$2a$10$JRjsNN0Uhyx/nOCNpfrdne8FWSQuFQSaeiAJbdOYMMPS4GaD.WdSm",
-      "Username": "testuser"
+      "Username": "testuser",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_wW2A27Un1r1f91F0": {
       "ID": "usr_wW2A27Un1r1f91F0",
       "Email": "newuser1@gmail.com",
       "HashedPassword": "$2a$10$PfpS57SPIVDnoUmOF7w6Qek5nrHmYIZCTi77q5abnSKi4w.J6l.3C",
-      "Username": "newuser1"
+      "Username": "newuser1",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_wiKtZgRf5y8nPy8Y": {
       "ID": "usr_wiKtZgRf5y8nPy8Y",
       "Email": "asdsad123123213@gmail.com",
       "HashedPassword": "$2a$10$TibKJMxsuazLJrEMwYsyeuopqoK7cgLIUJis74xHhva5vB1Pwto5K",
-      "Username": "teasdasdasd"
+      "Username": "teasdasdasd",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     },
     "usr_xDq7DR6VByuPHCaz": {
       "ID": "usr_xDq7DR6VByuPHCaz",
       "Email": "superman@gmail.com",
       "HashedPassword": "$2a$10$UwXzRI3MNgKp8Npa/9AkC.Lw1sOu3zuiDBdZFFpjPlyzw1fHXHhTm",
-      "Username": "superman"
+      "Username": "superman",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "0001-01-01T00:00:00Z"
     }
   }
 }
