@@ -2,22 +2,22 @@
 * Context
 *
 * Main application executable
-*/
+ */
 package main
 
 import (
+	_ "database/sql"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/gorilla/mux"
+	_ "github.com/jinzhu/gorm"
 	"log"
 	"net/http"
 	"os"
-	"github.com/gorilla/mux"
-	_ "github.com/go-sql-driver/mysql"
-	_ "github.com/jinzhu/gorm"
-	_ "database/sql"
 )
 
 /********************************************************
 * Main function to initiate the application
-*/
+ */
 func main() {
 
 	//Route Registration
@@ -25,7 +25,7 @@ func main() {
 
 	/* Static File Server */
 	unauthenticatedRouter.PathPrefix("/assets").Handler(
-	http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+		http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
 
 	notFound := new(NotFound)
 	unauthenticatedRouter.NotFoundHandler = notFound
@@ -40,7 +40,6 @@ func main() {
 
 	unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerNew).Methods("GET")
 	unauthenticatedRouter.HandleFunc("/login", loginSessionHandlerCreate).Methods("POST")
-
 
 	// Registration of secure routes
 	secureRouter := mux.NewRouter()

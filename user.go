@@ -3,16 +3,15 @@ package main
 import (
 	"golang.org/x/crypto/bcrypt"
 	"time"
-	"log"
-	)
+)
 
 type User struct {
 	ID             string
 	Email          string
 	HashedPassword string
 	Username       string
-	FirstName			 string
-	LastName			 string
+	FirstName      string
+	LastName       string
 	AccountCreated time.Time
 }
 
@@ -25,7 +24,7 @@ const (
 /**
 *
 * Post Conditions: returns a new user object
-*/
+ */
 func NewUser(username, email, password string) (User, error) {
 	user := User{
 		Email:    email,
@@ -78,7 +77,7 @@ func NewUser(username, email, password string) (User, error) {
 /**
 *
 *
-*/
+ */
 func FindUser(username string, password string) (*User, error) {
 
 	//create a dummy user with username supplied
@@ -106,17 +105,17 @@ func FindUser(username string, password string) (*User, error) {
 /**
 *
 *
-*/
+ */
 func UpdateUser(user *User,
-		email string,
-		currentPassword string,
-		newPassword string,
-		firstName string,
-		lastName string) (User, error) {
+	email string,
+	currentPassword string,
+	newPassword string,
+	firstName string,
+	lastName string) (User, error) {
 
 	out := *user
 	out.Email = email
-	
+
 	//Check if the email exists
 	existingUser, err := globalUserStore.FindByEmail(email)
 	if err != nil {

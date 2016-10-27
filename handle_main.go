@@ -1,21 +1,20 @@
 package main
 
-
 import (
-  "net/http"
-  "log"
+	"log"
+	"net/http"
 )
 
 /********************************************************
 * View Handler
-*/
+ */
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("viewHandler was called")
 }
 
 /********************************************************
 * About Handler
-*/
+ */
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, r, "index/about", nil)
 }

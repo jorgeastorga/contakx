@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
 	"log"
-	)
+	"net/http"
+)
 
 /**
 *
@@ -19,7 +19,7 @@ func userHandlerEdit(w http.ResponseWriter, r *http.Request) {
 /**
 *
 *
-*/
+ */
 func userHandlerUpdate(w http.ResponseWriter, r *http.Request) {
 	currentUser := RequestUser(r)
 	email := r.FormValue("email")
@@ -37,7 +37,6 @@ func userHandlerUpdate(w http.ResponseWriter, r *http.Request) {
 		newPassword,
 		firstName,
 		lastName)
-
 
 	if err != nil {
 		if IsValidationError(err) {
@@ -61,7 +60,7 @@ func userHandlerUpdate(w http.ResponseWriter, r *http.Request) {
 /********************************************************
 *  Registration Handler
 *  Used to render the registration view/page
-*/
+ */
 func registrationHandlerGET(w http.ResponseWriter, r *http.Request) {
 	RenderTemplate(w, r, "users/new", nil)
 }
@@ -69,7 +68,7 @@ func registrationHandlerGET(w http.ResponseWriter, r *http.Request) {
 /********************************************************
 *  Registration Handler
 *  Used to save the registration information
-*/
+ */
 func registrationHandlerPOST(w http.ResponseWriter, r *http.Request) {
 	//create user from form information
 	user, err := NewUser(

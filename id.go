@@ -1,8 +1,8 @@
 package main
 
 import (
-  "crypto/rand"
-  "fmt"
+	"crypto/rand"
+	"fmt"
 )
 
 //Source string uesed when generating a random identifier
@@ -13,16 +13,16 @@ const idSourceLen = byte(len(idSource))
 
 // GenerateID creates a prefixed random identifier.
 func GenerateID(prefix string, length int) string {
-    // Create an array with the correct capacity
-    id := make([]byte, length)
-    // Fill our array with random numbers
-    rand.Read(id)
+	// Create an array with the correct capacity
+	id := make([]byte, length)
+	// Fill our array with random numbers
+	rand.Read(id)
 
-    // Replace each random number with an alphanumeric value
-    for i, b := range id {
-        id[i] = idSource[b%idSourceLen]
-    }
+	// Replace each random number with an alphanumeric value
+	for i, b := range id {
+		id[i] = idSource[b%idSourceLen]
+	}
 
-    // Return the formatted id
-    return fmt.Sprintf("%s_%s", prefix, string(id))
+	// Return the formatted id
+	return fmt.Sprintf("%s_%s", prefix, string(id))
 }
