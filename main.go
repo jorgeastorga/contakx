@@ -47,6 +47,8 @@ func main() {
 	secureRouter.HandleFunc("/account", userHandlerEdit).Methods("GET")
 	secureRouter.HandleFunc("/account", userHandlerUpdate).Methods("POST")
 
+	secureRouter.HandleFunc("/contacts", contactHandlerView).Methods("GET")
+
 	//Setup middleware (chain model)
 	middleWare := MiddleWare{}
 	middleWare.Add(unauthenticatedRouter)

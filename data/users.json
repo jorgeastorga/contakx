@@ -72,6 +72,15 @@
       "LastName": "",
       "AccountCreated": "0001-01-01T00:00:00Z"
     },
+    "usr_95gARtfr2tOdtTUg": {
+      "ID": "usr_95gARtfr2tOdtTUg",
+      "Email": "testing123@gmail.com",
+      "HashedPassword": "$2a$10$jeqMRaLRaY3PuoYx4bK5g.Q0W2UJMBIj.wal/aysLJH0S7lnOU.cO",
+      "Username": "jorgeastorga123456",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "2017-03-14T22:45:40.070528282-07:00"
+    },
     "usr_CM37Z2s8RekASpeC": {
       "ID": "usr_CM37Z2s8RekASpeC",
       "Email": "estebanastorga1234567@mail.com",
@@ -215,6 +224,15 @@
       "FirstName": "",
       "LastName": "",
       "AccountCreated": "0001-01-01T00:00:00Z"
+    },
+    "usr_tJwxAx7tQIftXKJt": {
+      "ID": "usr_tJwxAx7tQIftXKJt",
+      "Email": "estebanastorga2002@yahoo.com",
+      "HashedPassword": "$2a$10$XOiPha/ozIk0YnfE2k1WD.k.dyVc8uUNfE2FkUV//OixBJFl6cLtG",
+      "Username": "estebanastorga2002",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "2017-03-27T23:27:57.90150615-07:00"
     },
     "usr_ulVwLA1JMgqi772l": {
       "ID": "usr_ulVwLA1JMgqi772l",
