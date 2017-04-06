@@ -7,18 +7,64 @@ package main
 
 import (
 	_ "database/sql"
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/gorilla/mux"
-	_ "github.com/jinzhu/gorm"
-	"log"
 	"net/http"
+	"log"
 	"os"
+	"fmt"
 )
+
+
+/***********************
+* DB Connection Details
+ */
+
+const (
+	DBHost = "127.0.0.1"
+	DBPort = "5432"
+	DBUser = "root"
+	DBPass = "testing123"
+	DBDatabase = "contakx"
+)
+
+//Database identified for gorm.DB
+var AppDB *gorm.DB
+
 
 /********************************************************
 * Main function to initiate the application
  */
 func main() {
+
+	var err error
+
+	//Database Connection Setup: PostgreSQL
+	dbConnection := fmt.Sprintf("host=%s port=%s user=%s dbname=%s sslmode=disable password=%s",
+		DBHost,
+		DBPort,
+		DBUser,
+		DBDatabase,
+		DBPass)
+
+	AppDB, err = gorm.Open("postgres", dbConnection)
+
+	if err != nil{
+		log.Println("Failed to connect to the database", err.Error())
+	} else {
+		log.Println("DB Connection: connected to the database successfully")
+	}
+
+
+	//Setup Database Tables
+	AppDB.AutoMigrate(&Contact{})
+
+
+	//TODO Delete this function call
+	//testing the creation of a contact
+	createContact()
+
 
 	//Route Registration
 	unauthenticatedRouter := mux.NewRouter()
@@ -67,4 +113,21 @@ func main() {
 		//Used for Heroku
 		log.Fatal(http.ListenAndServe(":"+port, middleWare))
 	}
+}
+
+//TODO: Delete this function and put into some kind of automated tests
+/* Test function to create a contact */
+func createContact(){
+	newContact := &Contact{
+		FirstName: "Esteban",
+		LastName: "Renteria",
+		Address1: "3230 Stuart Street",
+		Address2: "Street",
+		City: "Oakland",
+		State: "CA",
+		ZipCode: 94602,
+		Company: "Contaks Inc.",
+		Email: "jeastorga@gmail.com",
+		Phone: "(123)123-1235", }
+	newContact.create()
 }
