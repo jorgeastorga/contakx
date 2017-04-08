@@ -49,10 +49,11 @@
 
     <div id="navbar" class="navbar-collapse collapse">
       <form class="navbar-form navbar-right">
-        {{ if.CurrentUser }}
+        {{ if.CurrentUser }} <!-- ========== Navbar - Authenticated User ====== -->
+        <a class="btn btn-success" href="/contacts">Contacts</a>
         <a class="btn btn-success" href="/sign-out">Sign Out</a>
         <a class="btn btn-success" href="/account">Account</a>
-        {{ else }}
+        {{ else }} <!-- ========== Navbar - Anonymous User ====== -->
         <a class="btn btn-success" href="/login">Sign In</a>
         <a class="btn btn-success" href="/register">Register</a>
         {{ end }}

@@ -1,15 +1,27 @@
 {{ define "contacts/view" }}
-<h1>This is contacts!!!! Yay!!</h1>
-<h2 id="h2-test1" class="test">Estos son los contactos #2</h2>
 
+<!-- <h1> {{ .Contact1.FirstName}}</h1> -->
 
-
-<h1> {{ .Contact1.FirstName}}</h1>
-
-<ul>
+<!--<ul>
     {{ range .Contacts }}
         <li> {{ .FirstName }} {{ .LastName }}</li>
     {{ end }}
-</ul>
+</ul> -->
+
+<table class="table table-striped table-bordered table-hover table-condensed">
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Zip Code</th>
+    </tr>
+    {{ range .Contacts }}
+        <tr>
+            <td>{{ .FirstName }}</td>
+            <td>{{ .LastName }}</td>
+            <td>{{ .ZipCode }}</td>
+        </tr>
+
+    {{ end }}
+</table>
 
 {{ end }}
