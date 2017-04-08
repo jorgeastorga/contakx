@@ -1,4 +1,15 @@
 {{ define "contacts/view" }}
 <h1>This is contacts!!!! Yay!!</h1>
 <h2 id="h2-test1" class="test">Estos son los contactos #2</h2>
+
+
+
+<h1> {{ .Contact1.FirstName}}</h1>
+
+<ul>
+    {{ range .Contacts }}
+        <li> {{ .FirstName }} {{ .LastName }}</li>
+    {{ end }}
+</ul>
+
 {{ end }}

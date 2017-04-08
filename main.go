@@ -61,11 +61,6 @@ func main() {
 	AppDB.AutoMigrate(&Contact{})
 
 
-	//TODO Delete this function call
-	//testing the creation of a contact
-	createContact()
-
-
 	//Route Registration
 	unauthenticatedRouter := mux.NewRouter()
 
