@@ -63,6 +63,15 @@
       "LastName": "",
       "AccountCreated": "0001-01-01T00:00:00Z"
     },
+    "usr_5CXLqC6pV6l4u1Li": {
+      "ID": "usr_5CXLqC6pV6l4u1Li",
+      "Email": "jeastorga@gmail.com",
+      "HashedPassword": "$2a$10$MQ7TZhaG4RPwafJ1WOFDmuDyzKH9Y/5ETTU.pTlxPu2obJOIp6rze",
+      "Username": "chuchonadamas",
+      "FirstName": "",
+      "LastName": "",
+      "AccountCreated": "2017-12-19T00:41:50.145659-08:00"
+    },
     "usr_71f0W6W4zxPsPWzE": {
       "ID": "usr_71f0W6W4zxPsPWzE",
       "Email": "estebanastorga12345678@mail.com",
