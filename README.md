@@ -16,6 +16,7 @@ A simple project to learn how to write web applications in Go and also learn Go 
 1. Install Go
 2. Setup your Go Workspace (e.g. setup $GOPATH)
 3. Run: go get github.com/jorgeastorga/contakx
+4. Navigate to: dev/go-workspace/src/github.com/jorgeastorga/contakx
 4. Run: go install
 5. Run: contakx
 
